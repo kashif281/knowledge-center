@@ -1,0 +1,88 @@
+{
+  "entities": [
+    {
+      "name": "Category",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "parent_id",
+          "type": "bigint",
+          "nullable": true,
+          "isIndex": true
+        }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            "name"
+          ],
+          "unique": true
+        }
+      ],
+      "uniques": [
+        {
+          "fields": [
+            "name"
+          ],
+          "name": "unique_name"
+        }
+      ]
+    },
+    {
+      "name": "Article",
+      "created_at": false,
+      "updated_at": false,
+      "fields": [
+        {
+          "name": "title",
+          "type": "varchar",
+          "nullable": false,
+          "isIndex": true
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "nullable": true
+        },
+        {
+          "name": "category_id",
+          "type": "bigint",
+          "nullable": false
+        }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            "title"
+          ],
+          "unique": false
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Category",
+      "to": "Category",
+      "type": "OneToMany"
+    },
+    {
+      "from": "Category",
+      "to": "Article",
+      "type": "OneToMany"
+    }
+  ],
+  "_removedEntities": []
+}
